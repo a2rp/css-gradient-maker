@@ -1,0 +1,109 @@
+.cssOutput {
+    overflow: hidden;
+    border: 1px solid #302b45;
+    border-radius: 11px;
+    background: var(--navy);
+    box-shadow: 0 12px 32px rgb(33 29 49 / 13%);
+
+    .outputHeader {
+        display: flex;
+        min-height: 62px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid #39344e;
+        padding: 11px 15px;
+
+        > div {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .codeIcon {
+            display: grid;
+            width: 31px;
+            height: 31px;
+            place-items: center;
+            border: 1px solid #4e456d;
+            border-radius: 8px;
+            background: #302a47;
+            color: #d5c5ff;
+
+            svg {
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+        h2 {
+            color: #f3f0fb;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        p {
+            margin-top: 2px;
+            color: #aaa4b9;
+            font-size: 8px;
+        }
+
+        button {
+            display: inline-flex;
+            min-height: 32px;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #61578b;
+            border-radius: 6px;
+            background: #413660;
+            padding: 0 9px;
+            color: #f2edff;
+            font-size: 8px;
+            font-weight: 750;
+            transition: border-color 130ms ease, box-shadow 130ms ease;
+
+            svg {
+                width: 13px;
+                height: 13px;
+            }
+
+            &:hover {
+                border-color: #a58bed;
+                box-shadow: 0 0 0 2px rgb(173 150 246 / 14%);
+            }
+        }
+    }
+
+    pre {
+        overflow: auto;
+        min-height: 70px;
+        margin: 12px;
+        border: 1px solid #39354d;
+        border-radius: 7px;
+        background: #191725;
+        padding: 12px;
+        color: #e2dcf7;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+
+        &:focus-visible {
+            outline: 2px solid #a58bed;
+            outline-offset: 2px;
+        }
+
+        code {
+            color: inherit;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 9px;
+            line-height: 1.7;
+        }
+    }
+
+    .copyStatus {
+        min-height: 14px;
+        padding: 0 14px 5px;
+        color: #eac980;
+        font-size: 8px;
+        text-align: right;
+    }
+}

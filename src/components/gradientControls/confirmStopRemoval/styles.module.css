@@ -1,0 +1,86 @@
+.modalBackdrop {
+    position: fixed;
+    z-index: 30;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgb(20 17 31 / 56%);
+    padding: 20px;
+
+    .confirmDialog {
+        width: min(100%, 365px);
+        border: 1px solid #e2deea;
+        border-radius: 11px;
+        background: #fff;
+        padding: 22px;
+        box-shadow: 0 20px 70px rgb(20 17 31 / 24%);
+
+        .dialogMark {
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border: 1px solid #f0d9c8;
+            border-radius: 50%;
+            background: #fff5eb;
+            color: #a95b32;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        h2 {
+            margin-top: 13px;
+            color: #2d2939;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            margin-top: 5px;
+            color: #727080;
+            font-size: 10px;
+            line-height: 1.65;
+        }
+    }
+
+    .dialogActions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 7px;
+        margin-top: 19px;
+
+        button {
+            min-height: 34px;
+            border: 1px solid #d9d6e1;
+            border-radius: 6px;
+            background: white;
+            padding: 0 11px;
+            color: #615e6c;
+            font-size: 9px;
+            font-weight: 750;
+            transition: border-color 130ms ease, box-shadow 130ms ease;
+
+            &:hover {
+                border-color: #a79abe;
+                box-shadow: 0 0 0 2px rgb(122 91 215 / 10%);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 2px;
+            }
+
+            &:last-child {
+                border-color: #ad574e;
+                background: #a9443d;
+                color: white;
+
+                &:hover {
+                    border-color: #853630;
+                    box-shadow: 0 0 0 2px rgb(169 68 61 / 16%);
+                }
+            }
+        }
+    }
+}

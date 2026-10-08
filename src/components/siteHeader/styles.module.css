@@ -52,7 +52,6 @@
             color: #c2bbd2;
             font-size: 10px;
             font-weight: 700;
-            transition: color 130ms ease;
 
             &:hover {
                 color: #f1daff;

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { LuCheck, LuCircle, LuMoveRight, LuPlus, LuTrash2 } from "react-icons/lu";
 import { createGradientCss, cssGradientPresets } from "../../utils/gradientCss.js";
 import ConfirmStopRemoval from "./confirmStopRemoval/index.jsx";
@@ -8,12 +8,14 @@ const getGradientBackground = (preset) => createGradientCss(preset.type, preset.
 
 const GradientControls = ({ type, angle, stops, activePreset, onTypeChange, onAngleChange, onStopColorChange, onStopPositionChange, onAddStop, onStopRemove, onPresetSelect }) => {
     const [pendingStopId, setPendingStopId] = useState("");
+    const stopsHeadingRef = useRef(null);
     const pendingStop = stops.find((stop) => stop.id === pendingStopId);
     const pendingIndex = stops.findIndex((stop) => stop.id === pendingStopId);
     const cancelRemoval = useCallback(() => setPendingStopId(""), []);
     const confirmRemoval = useCallback(() => {
         if (pendingStopId) onStopRemove(pendingStopId);
         setPendingStopId("");
+        requestAnimationFrame(() => stopsHeadingRef.current?.focus());
     }, [onStopRemove, pendingStopId]);
 
     return (
@@ -41,7 +43,7 @@ const GradientControls = ({ type, angle, stops, activePreset, onTypeChange, onAn
 
             <div className={styles.stopsSection}>
                 <div className={styles.stopsHeading}>
-                    <div><h3>Color stops</h3><p>Adjust each color and where it appears.</p></div>
+                    <div><h3 ref={stopsHeadingRef} tabIndex="-1">Color stops</h3><p>Adjust each color and where it appears.</p></div>
                     <span>{stops.length} / 5</span>
                 </div>
                 <div className={styles.stopList}>

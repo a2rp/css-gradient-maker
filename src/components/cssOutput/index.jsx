@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LuCheck, LuCode, LuCopy } from "react-icons/lu";
 import styles from "./styles.module.css";
 
 const CssOutput = ({ cssText }) => {
     const [copyStatus, setCopyStatus] = useState("");
+    const statusTimeout = useRef(null);
+
+    useEffect(() => () => {
+        window.clearTimeout(statusTimeout.current);
+    }, []);
 
     const copyCss = async () => {
         try {
@@ -12,7 +17,8 @@ const CssOutput = ({ cssText }) => {
         } catch {
             setCopyStatus("Clipboard unavailable");
         }
-        window.setTimeout(() => setCopyStatus(""), 1800);
+        window.clearTimeout(statusTimeout.current);
+        statusTimeout.current = window.setTimeout(() => setCopyStatus(""), 1800);
     };
 
     return (
@@ -22,7 +28,7 @@ const CssOutput = ({ cssText }) => {
                 <button type="button" onClick={copyCss}>{copyStatus === "CSS copied" ? <LuCheck aria-hidden="true" /> : <LuCopy aria-hidden="true" />}{copyStatus === "CSS copied" ? "Copied" : "Copy CSS"}</button>
             </div>
             <pre tabIndex="0" aria-label="Generated CSS"><code>{cssText}</code></pre>
-            <p className={styles.copyStatus} aria-live="polite">{copyStatus === "Clipboard unavailable" ? copyStatus : ""}</p>
+            <p className={styles.copyStatus} role="status" aria-live="polite">{copyStatus}</p>
         </section>
     );
 };

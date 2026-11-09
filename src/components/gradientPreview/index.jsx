@@ -16,7 +16,7 @@ const GradientPreview = ({ gradientCss }) => {
         <section className={styles.gradientPreview} id="preview" aria-labelledby="preview-title">
             <div className={styles.previewHeader}>
                 <div><h2 id="preview-title">Live preview</h2><p>Try your colors across a few shapes.</p></div>
-                <div className={styles.formatButtons} aria-label="Preview shape">
+                <div className={styles.formatButtons} role="group" aria-label="Preview shape">
                     {formats.map(({ id, label, icon: Icon }) => <button type="button" key={id} className={format === id ? styles.selectedFormat : ""} onClick={() => setFormat(id)} aria-pressed={format === id} aria-label={`${label} preview`}><Icon aria-hidden="true" /><span>{label}</span></button>)}
                 </div>
             </div>

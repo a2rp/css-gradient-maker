@@ -6,6 +6,7 @@ const ConfirmStopRemoval = ({ index, stop, onCancel, onConfirm }) => {
     const removeRef = useRef(null);
 
     useEffect(() => {
+        const returnFocusTo = document.activeElement;
         cancelRef.current?.focus();
         const handleKeyDown = (event) => {
             if (event.key === "Escape") {
@@ -27,7 +28,12 @@ const ConfirmStopRemoval = ({ index, stop, onCancel, onConfirm }) => {
         };
 
         document.addEventListener("keydown", handleKeyDown);
-        return () => document.removeEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            if (returnFocusTo instanceof HTMLElement && returnFocusTo.isConnected) {
+                returnFocusTo.focus();
+            }
+        };
     }, [onCancel]);
 
     return (
